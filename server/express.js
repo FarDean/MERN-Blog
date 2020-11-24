@@ -12,6 +12,12 @@ import userRouter from './routes/user.routes'
 import authRouter from './routes/auth.routes'
 import articleRouter from './routes/article.routes'
 import recipeRouter from './routes/recipe.routes'
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
+import StaticRouter from 'react-router-dom/StaticRouter'
+import MainRouter from './../client/MainRouter'
+import { Helmet } from "react-helmet";
+
 const CURRENT_WORKING_DIRECTORY = process.cwd()
 const app = express()
 compile(app)
@@ -25,8 +31,22 @@ app.use('/',userRouter)
 app.use('/',authRouter)
 app.use('/',articleRouter)
 app.use('/',recipeRouter)
-app.get('/',(req,res)=>{
-    res.status(200).send(Template())
+
+
+app.get('*',(req,res)=>{
+    const context ={}
+    const markup = ReactDOMServer.renderToString(
+        <StaticRouter location={req.url} context={context}>
+            <MainRouter />
+        </StaticRouter>
+    )
+
+    const helmet = Helmet.renderStatic();
+
+    if(context.url){
+        return res.redirect(303,context.url)
+    }
+    res.status(200).send(Template(markup,helmet))
 })
 
 app.use((err,req,res,next)=>{
@@ -40,7 +60,6 @@ app.use((err,req,res,next)=>{
             error:err.name + ": " +err.message
         })
     }
-    console.log(err);
 })
 
 export default app

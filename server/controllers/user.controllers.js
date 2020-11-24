@@ -9,9 +9,8 @@ const create = async(req,res)=>{
         return res.status(201).json({
             message:"user created btich!"
         })
-    } catch (err) {
-        
-        return res.status(500).json({
+    } catch (err) { 
+        return res.status(400).json({
             error:ErrorHandler.getErrorMessage(err)
         })
     }
@@ -37,7 +36,7 @@ const userById = async(req,res,next,id)=>{
                             .populate('recipes','title')
     if(!user){
         return res.status(404).json({
-            message: "user not found !"
+            error: "user not found !"
         })
     }
     req.profile = user

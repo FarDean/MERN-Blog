@@ -2,11 +2,9 @@ const path = require('path')
 const CURRENT_WORKING_DIRECTORY = process.cwd()
 const webpack = require('webpack')
 module.exports={
-    name:'browser',
-    devtool:'cheap-module-source-map',
-    mode:'development',
+    mode:'production',
     entry: [
-        'webpack-hot-middleware/client?reload=true',path.resolve(CURRENT_WORKING_DIRECTORY,'client/index.js')
+        path.resolve(CURRENT_WORKING_DIRECTORY,'client/index.js')
     ],
     output:{
         path:path.resolve(CURRENT_WORKING_DIRECTORY,'dist'),
@@ -41,8 +39,5 @@ module.exports={
                 ]
               }
         ]
-    },
-    plugins:[
-        new webpack.HotModuleReplacementPlugin()
-    ]
+    }
 }

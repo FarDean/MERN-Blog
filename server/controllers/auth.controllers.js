@@ -6,15 +6,16 @@ const signin =async(req,res)=>{
     try {
         const {name,password}=req.body
         const user = await User.findOne({name})
-        if(!user) return res.json({
-            message:"user doesnt exist"
-        })
         if(!password || !name) return res.status(400).json({
-            message:'please fill all the fields'
+            error:'please fill all the fields'
         })
+        if(!user) return res.status(404).json({
+            error:"user doesnt exist"
+        })
+
         if(!user.authenticate(password)){
             return res.status(400).json({
-                message:'wrong password'
+                error:'wrong password'
             })
         }
         const token = jwt.sign({_id:user._id},process.env.JWT_SECRET)
@@ -23,18 +24,16 @@ const signin =async(req,res)=>{
     
         return res.json({
             token,
+            message: 'Successfully signed in!',
             user:{
-                _id:user._id,
                 name:user.name,
-                email:user.email,
-                articles:user.articles,
-                recipes:user.recipes
+                isAdmin:user.isAdmin
             }
         })
     } catch (err) {
         console.log(err);
         return res.status(401).json({
-            message:"couldnt sign in"
+            error:"couldnt sign in"
         })
     }
 }

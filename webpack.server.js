@@ -10,7 +10,7 @@ module.exports={
         libraryTarget: 'commonjs2'
     },
     target: 'node',
-    externals:[nodeExternals()],
+    externals:[nodeExternals(),"react-helmet"],
     module: {
         rules: [
             {
