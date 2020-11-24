@@ -18,4 +18,4 @@ const App =()=> {
     )
 }
 
-export default hot(App)
+export default App
