@@ -92,7 +92,7 @@ export const GlobalProvider = ({children})=> {
         }
         try {
             const res = await axios.post('/api/articles',article,config)
-            console.log(res);
+
             dispatch({
                 type: 'CREATE_ARTICLE',
                 payload:res.data
