@@ -1,3 +1,4 @@
 node_modules
-tmpnodejsnpm-cache
-dist
+tmpnodejsnpm-cache/
+dist/
+.env
