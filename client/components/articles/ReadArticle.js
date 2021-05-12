@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "./../../context/GlobalContext";
 import { User, Calendar } from "phosphor-react";
+import { Helmet } from "react-helmet";
 
 export default function ReadArticle({ match }) {
 	const { article, error, message, getSingleArticle, setToNull, user, deleteArticle } =
