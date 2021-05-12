@@ -20,7 +20,7 @@ import { Helmet } from "react-helmet";
 
 const CURRENT_WORKING_DIRECTORY = process.cwd();
 const app = express();
-compile(app);
+// compile(app);
 app.use(cors());
 app.use(compress());
 app.use(express.json());
