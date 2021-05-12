@@ -2,6 +2,7 @@ import React,{useContext,useState,useEffect} from 'react'
 import {GlobalContext} from './../context/GlobalContext'
 import { User,Key,At } from "phosphor-react"
 import { Link } from 'react-router-dom'
+import {Helmet} from "react-helmet";
 
 export default function Signup() {
     const {registerUser,error,message,setToNull} = useContext(GlobalContext)
@@ -31,6 +32,9 @@ export default function Signup() {
 
     return (
         <>
+            <Helmet>
+                <title>FarDean Blog - Sign Up</title>
+            </Helmet>
             {loading && <div class="lds-dual-ring"></div>}
             <div className="container">
                 {error && 

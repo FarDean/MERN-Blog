@@ -3,7 +3,7 @@ if(process.env.NODE_ENV !== 'production'){
 }
 import express from 'express'
 import Template from '../template'
-// import {compile} from './devBundle'
+import {compile} from './devBundle'
 import cors from 'cors'
 import compress from 'compression'
 import helmet from 'helmet'
@@ -20,7 +20,7 @@ import { Helmet } from "react-helmet";
 
 const CURRENT_WORKING_DIRECTORY = process.cwd()
 const app = express()
-// compile(app)
+compile(app)
 app.use(cors())
 app.use(compress())
 app.use(express.json())
@@ -33,7 +33,7 @@ app.use('/',articleRouter)
 app.use('/',recipeRouter)
 
 
-app.get('*',(req,res)=>{
+app.get('/*',(req,res)=>{
     const context ={}
     const markup = ReactDOMServer.renderToString(
         <StaticRouter location={req.url} context={context}>

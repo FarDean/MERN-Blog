@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter,withRouter } from 'react-router-dom';
 import MainRouter from './MainRouter';
 import './assets/css/App.css'
 import './../node_modules/slick-carousel/slick/slick.css'
@@ -18,4 +18,4 @@ const App =()=> {
     )
 }
 
-export default App
+export default hot(App) 

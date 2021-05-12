@@ -3,6 +3,7 @@ import {GlobalContext} from './../context/GlobalContext'
 import { User,Key } from "phosphor-react"
 import { Link,Redirect } from 'react-router-dom'
 import { setCredentials } from "./../helpers/auth-helper";
+import {Helmet} from "react-helmet";
 
 export default function Signin() {
     const {signIn,error,message,setToNull,token,user} = useContext(GlobalContext)
@@ -41,6 +42,9 @@ export default function Signin() {
 
     return (
         <>
+            <Helmet>
+                <title>FarDean Blog - Sign In</title>
+            </Helmet>
         {loading && <div class="lds-dual-ring"></div>}
 
         <div className='container'>

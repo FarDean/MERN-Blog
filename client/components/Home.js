@@ -1,7 +1,7 @@
 import React,{useState,useEffect,useContext} from 'react'
 import { Link,Redirect } from 'react-router-dom'
 import {GlobalContext} from './../context/GlobalContext'
-
+import {Helmet} from "react-helmet";
 import { User,Calendar} from "phosphor-react"
 
 import Slider from "react-slick";
@@ -66,6 +66,9 @@ export default function Home() {
     
     return (
         <>
+            <Helmet>
+                <title>FarDean Blog</title>
+            </Helmet>
             {loading && <div class="lds-dual-ring"></div>}
             <div className="container">
                 {error && 
