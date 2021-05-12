@@ -3,7 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 import express from "express";
 import Template from "../template";
-import { compile } from "./devBundle";
+// import { compile } from "./devBundle";
 import cors from "cors";
 import compress from "compression";
 import helmet from "helmet";
